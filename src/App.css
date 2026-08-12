@@ -1,0 +1,5 @@
+/* App-level layout styles */
+.app {
+  width: 100%;
+  position: relative;
+}
