@@ -1,103 +1,166 @@
+import React from 'react';
+
 export default function About() {
   const stats = [
     { value: '2+',  label: 'Projects Built' },
-    { value: '1',   label: 'Internship' },
-    { value: '8+',  label: 'Technologies' },
+    { value: '1',   label: 'Internship Completed' },
+    { value: '8+',  label: 'Technologies Mastered' },
     { value: '8.06', label: 'MCA CGPA' },
   ];
 
   return (
     <>
       <style>{`
+        #about {
+          padding: 70px 0 90px;
+          position: relative;
+          background: linear-gradient(180deg, rgba(248,250,252,0.4) 0%, rgba(255,255,255,1) 100%);
+        }
+        
         .about-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 56px;
-          align-items: start;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 80px;
+          align-items: center;
         }
-        .about-text p {
-          font-size: 16px;
-          line-height: 1.8;
-          color: var(--text-secondary);
-          margin-bottom: 18px;
+
+        /* Left Side: Header & Text */
+        .about-content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
         }
-        .about-text p:last-child { margin-bottom: 0; }
-        .about-highlight {
-          color: var(--accent-light);
-          font-weight: 600;
+
+        .section-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: var(--text-primary);
+          background: rgba(255,255,255,0.8);
+          border: 1px solid rgba(148, 163, 184, 0.3);
+          padding: 6px 14px;
+          border-radius: 99px;
+          margin-bottom: 24px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
-        .about-stats {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 16px;
+        .section-badge::before {
+          content: '';
+          width: 6px; height: 6px;
+          border-radius: 50%;
+          background: #7c3aed;
         }
-        .stat-card {
-          padding: 28px 20px;
-          text-align: center;
-          border-radius: var(--radius-md);
-          background: var(--surface);
-          border: 1px solid var(--border);
-          transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+
+        .section-title {
+          margin-bottom: 24px;
         }
-        .stat-card:hover {
-          border-color: var(--border-accent);
-          transform: translateY(-4px);
-          box-shadow: var(--shadow-glow);
-        }
-        .stat-value {
-          font-family: var(--font-heading);
-          font-size: 36px;
-          font-weight: 800;
-          line-height: 1;
-          margin-bottom: 8px;
-          background: linear-gradient(135deg, var(--accent-light), var(--cyan));
+        .section-title .gradient-text {
+          display: block;
+          margin-top: 12px;
+          font-size: clamp(22px, 2.5vw, 28px);
+          font-weight: 700;
+          background: linear-gradient(135deg, #7e22ce, #0ea5e9);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
-        .stat-label {
-          font-size: 13px;
-          font-weight: 500;
-          color: var(--text-muted);
-          text-transform: uppercase;
-          letter-spacing: 0.07em;
+
+        .about-text {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          font-size: 17px;
+          line-height: 1.8;
+          color: #475569;
         }
-        @media (max-width: 768px) {
-          .about-grid { grid-template-columns: 1fr; gap: 36px; }
+        .about-text p {
+          margin: 0;
+          text-align: justify;
+        }
+        .about-highlight {
+          color: var(--text-primary);
+          font-weight: 600;
+        }
+
+        /* Right Side: Stats */
+        .about-stats {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+        }
+        .stat-card {
+          background: #fff;
+          border: 1px solid rgba(148, 163, 184, 0.25);
+          border-radius: 20px;
+          padding: 24px 20px;
+          display: flex;
+          flex-direction: column;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 12px rgba(15,23,42,0.02);
+        }
+        .stat-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(124, 58, 237, 0.3);
+          box-shadow: 0 20px 40px rgba(15,23,42,0.06);
+        }
+        .stat-value {
+          font-family: var(--font-heading);
+          font-size: 42px;
+          font-weight: 800;
+          background: linear-gradient(135deg, #7e22ce 0%, #0ea5e9 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          line-height: 1;
+          margin-bottom: 12px;
+          letter-spacing: -0.02em;
+        }
+        .stat-label {
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--text-secondary);
+        }
+
+        @media (max-width: 960px) {
+          .about-grid { grid-template-columns: 1fr; gap: 56px; }
+          .about-content { align-items: center; text-align: center; }
+        }
+        @media (max-width: 600px) {
+          .about-stats { grid-template-columns: 1fr; }
         }
       `}</style>
 
-      <section id="about">
+      <section id="about" className="about-section bg-pattern-dots">
         <div className="container">
-          <div className="fade-up">
-            <span className="section-label">✦ About Me</span>
-            <h2 className="section-title">Passionate About <span className="gradient-text">Building Solutions</span></h2>
-            <p className="section-subtitle">Here's a little more about who I am and what drives me.</p>
+          <div className="section-header-vibrant fade-up">
+            <h2 className="title-vibrant">
+              About <span className="gradient-text">Me</span>
+            </h2>
+            <p className="subtitle-vibrant">
+              Passionate about building solutions.
+            </p>
           </div>
 
           <div className="about-grid">
-            <div className="about-text fade-up delay-1">
-              <p>
-                I'm an <span className="about-highlight">MCA student</span> passionate about full-stack development
-                and building user-friendly web and mobile applications. I enjoy transforming ideas into
-                practical solutions and continuously improving my skills through hands-on learning.
-              </p>
-              <p>
-                I have experience working with technologies such as{' '}
-                <span className="about-highlight">React, JavaScript, Python, PHP, MySQL, HTML</span>, and CSS.
-                I've developed projects like a canteen management mobile app (<span className="about-highlight">DineDesk</span>) and
-                an e-commerce platform, which strengthened my understanding of real-world application development,
-                including authentication, database integration, and responsive design.
-              </p>
-              <p>
-                I am a <span className="about-highlight">self-motivated and detail-oriented</span> individual with
-                strong problem-solving abilities. I adapt quickly, work well in team environments, and value
-                continuous learning and growth.
-              </p>
-              <p>
-                I'm currently looking for opportunities to apply my skills, gain industry experience,
-                and grow as a software developer. 🚀
-              </p>
+            
+            <div className="about-content fade-up">
+              <div className="about-text">
+                <p>
+                  I’m an <span className="about-highlight">MCA graduate</span> with a strong interest in full-stack development,
+                  building practical and user-friendly web and mobile applications.
+                </p>
+                <p>
+                  I have worked with <span className="about-highlight">React, JavaScript, Python, PHP, MySQL, HTML, and CSS</span>,
+                  and I enjoy turning ideas into clean, scalable, real-world digital solutions.
+                </p>
+                <p>
+                  I’m a <span className="about-highlight">quick learner</span> with a problem-solving mindset, and I value teamwork,
+                  continuous learning, and building impactful software.
+                </p>
+              </div>
             </div>
 
             <div className="about-stats fade-up delay-2">
@@ -108,6 +171,7 @@ export default function About() {
                 </div>
               ))}
             </div>
+
           </div>
         </div>
       </section>

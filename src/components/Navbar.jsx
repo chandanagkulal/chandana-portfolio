@@ -65,37 +65,43 @@ export default function Navbar() {
         }
         .nav-logo {
           font-family: var(--font-heading);
-          font-size: 28px;
+          font-size: 26px;
           font-weight: 800;
-          letter-spacing: -0.03em;
-          color: var(--text-primary);
+          letter-spacing: -0.02em;
+          background: linear-gradient(135deg, var(--accent) 0%, var(--cyan) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
           cursor: pointer;
           user-select: none;
-          transition: color var(--transition);
+          transition: opacity var(--transition), transform var(--transition);
         }
         .nav-logo:hover {
-          color: var(--accent);
+          opacity: 0.8;
+          transform: translateY(-1px);
         }
         .nav-links {
           display: flex;
           align-items: center;
-          gap: 4px;
+          gap: 12px;
         }
         .nav-link {
           position: relative;
-          padding: 10px 18px;
-          font-size: 17px;
-          font-weight: 600;
+          padding: 8px 16px;
+          font-size: 18px;
+          font-weight: 700;
+          letter-spacing: 0.02em;
+          text-transform: uppercase;
           color: var(--text-secondary);
           border-radius: var(--radius-sm);
           cursor: pointer;
           border: none;
           background: none;
-          font-family: var(--font-sans);
+          font-family: var(--font-mono);
           transition: color var(--transition), background var(--transition);
         }
-        .nav-link:hover { color: var(--text-primary); background: var(--surface); }
-        .nav-link.active { color: var(--accent-light); }
+        .nav-link:hover { color: var(--text-primary); background: rgba(0,0,0,0.03); }
+        .nav-link.active { color: var(--accent); }
         .nav-link.active::after {
           content: '';
           position: absolute;

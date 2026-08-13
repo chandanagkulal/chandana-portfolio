@@ -1,3 +1,6 @@
+import React from 'react';
+import { GraduationCap, BookOpen, MapPin, Calendar, Star } from 'lucide-react';
+
 const EDUCATION = [
   {
     degree: 'Master of Computer Applications',
@@ -5,10 +8,7 @@ const EDUCATION = [
     institution: 'Poornaprajna Institute of Management',
     cgpa: '8.06',
     period: '2024 – 2026',
-    icon: '🎓',
-    color: 'var(--accent)',
-    border: 'var(--border-accent)',
-    bg: 'var(--accent-dim)',
+    icon: GraduationCap,
   },
   {
     degree: 'Bachelor of Computer Applications',
@@ -16,10 +16,7 @@ const EDUCATION = [
     institution: 'Milagres College',
     cgpa: '7.98',
     period: '2021 – 2024',
-    icon: '📚',
-    color: 'var(--cyan)',
-    border: 'rgba(8,145,178,0.3)',
-    bg: 'rgba(8,145,178,0.08)',
+    icon: BookOpen,
   },
 ];
 
@@ -27,112 +24,206 @@ export default function Education() {
   return (
     <>
       <style>{`
-        #education { background: var(--bg-2); }
+        .education-section {
+          background: var(--bg);
+          padding: 100px 24px;
+          position: relative;
+        }
+
+        .container-education {
+          max-width: 1000px;
+          margin: 0 auto;
+          position: relative;
+        }
+
+        /* Horizontal Timeline Framework */
+        .timeline-wrapper {
+          position: relative;
+          margin-top: 60px;
+        }
+
+        .timeline-track-horizontal {
+          position: absolute;
+          top: 30px; /* Centers exactly with the 60px marker */
+          left: 10%;
+          right: 10%;
+          height: 2px;
+          background: linear-gradient(to right, transparent, rgba(0,0,0,0.1) 15%, rgba(0,0,0,0.1) 85%, transparent);
+          z-index: 0;
+        }
+
         .edu-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
+          gap: 40px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .edu-column {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           gap: 24px;
         }
-        .edu-card {
-          padding: 36px 32px;
-          position: relative;
-          overflow: hidden;
-        }
-        .edu-card::before {
-          content: '';
-          position: absolute;
-          left: 0; top: 0; bottom: 0;
-          width: 4px;
-          background: var(--edu-accent);
-          border-radius: 0 2px 2px 0;
-        }
-        .edu-icon-wrap {
-          width: 52px; height: 52px;
-          border-radius: var(--radius-md);
-          background: var(--edu-bg);
-          border: 1px solid var(--edu-border);
+
+        /* Sleek Minimal Marker */
+        .timeline-marker-top {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%; /* Circle instead of box */
+          background: #ffffff;
+          border: 1px solid rgba(0,0,0,0.08);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 24px;
-          margin-bottom: 20px;
+          box-shadow: 0 8px 16px -4px rgba(0,0,0,0.05);
+          transition: transform 0.5s ease, box-shadow 0.4s ease;
+          position: relative;
+          z-index: 2;
+          color: var(--text-primary); /* Dark Icon */
         }
-        .edu-short {
-          font-family: var(--font-heading);
-          font-size: 13px;
-          font-weight: 700;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: var(--edu-accent);
-          margin-bottom: 6px;
+
+        .edu-column:hover .timeline-marker-top {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 24px -6px rgba(0,0,0,0.1);
+          border-color: rgba(0,0,0,0.15);
         }
-        .edu-degree {
-          font-family: var(--font-heading);
-          font-size: 18px;
-          font-weight: 700;
-          color: var(--text-primary);
-          margin-bottom: 6px;
-          line-height: 1.3;
-        }
-        .edu-institution {
-          font-size: 14px;
-          color: var(--text-secondary);
-          margin-bottom: 20px;
-        }
-        .edu-meta {
+
+        /* Card Setup */
+        .edu-card {
+          background: #ffffff;
+          border-radius: 24px;
+          padding: 40px 32px;
+          box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+          transition: all 0.4s ease;
+          border: 1px solid rgba(0,0,0,0.04);
+          position: relative;
+          overflow: hidden;
           display: flex;
-          gap: 12px;
-          flex-wrap: wrap;
+          flex-direction: column;
+          width: 100%;
         }
-        .edu-chip {
+
+        .edu-column:hover .edu-card {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
+        }
+
+        .edu-content {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+
+        .edu-degree {
+          font-family: var(--font-heading, serif);
+          font-size: 24px;
+          font-weight: 800;
+          color: var(--text-primary);
+          margin: 0 0 20px 0;
+          line-height: 1.3;
+          text-align: center;
+        }
+
+        .edu-details-grid {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 32px;
+          flex-grow: 1;
+        }
+
+        .edu-badge {
           display: inline-flex;
           align-items: center;
-          gap: 5px;
-          padding: 5px 12px;
-          font-size: 12px;
-          font-weight: 600;
-          border-radius: var(--radius-full);
-          border: 1px solid;
+          gap: 10px;
+          font-size: 15px;
+          font-weight: 500;
+          color: var(--text-secondary);
         }
-        @media (max-width: 640px) {
-          .edu-grid { grid-template-columns: 1fr; }
+
+        .edu-badge svg {
+          color: var(--text-muted);
+        }
+
+        .edu-cgpa-box {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          padding: 10px 24px;
+          border-radius: 99px; /* Pill shape */
+          border: 1px solid rgba(0,0,0,0.1);
+          background: rgba(0,0,0,0.02);
+          font-weight: 700;
+          font-size: 14px;
+          color: var(--text-primary); /* Dark text instead of white on color */
+          width: max-content;
+          margin: 0 auto;
+          transition: all 0.3s ease;
+        }
+        
+        .edu-column:hover .edu-cgpa-box {
+          background: #111827; /* Very sleek dark color on hover */
+          color: #ffffff;
+          border-color: #111827;
+        }
+
+        @media (max-width: 768px) {
+          .timeline-track-horizontal { display: none; }
+          .edu-grid { grid-template-columns: 1fr; gap: 40px; }
+          .edu-card { padding: 32px 24px; }
         }
       `}</style>
 
-      <section id="education">
-        <div className="container">
-          <div className="fade-up">
-            <span className="section-label">🎓 Education</span>
-            <h2 className="section-title">Academic <span className="gradient-text">Background</span></h2>
-            <p className="section-subtitle">My educational foundation in computer science and applications.</p>
+      <section id="education" className="education-section">
+        <div className="container-education">
+          <div className="section-header-vibrant fade-up">
+            <h2 className="title-vibrant">Academic <span className="gradient-text">Journey</span></h2>
+            <p className="subtitle-vibrant">
+              My formal education shaping my foundation in computer science and software engineering.
+            </p>
           </div>
 
-          <div className="edu-grid">
-            {EDUCATION.map(({ degree, short, institution, cgpa, period, icon, color, border, bg }, i) => (
-              <div
-                className="glass-card edu-card fade-up"
-                key={short}
-                style={{
-                  '--edu-accent': color,
-                  '--edu-border': border,
-                  '--edu-bg': bg,
-                  transitionDelay: `${i * 0.15}s`,
-                }}
-              >
-                <div className="edu-icon-wrap">{icon}</div>
-                <div className="edu-short">{short}</div>
-                <div className="edu-degree">{degree}</div>
-                <div className="edu-institution">📍 {institution}</div>
-                <div className="edu-meta">
-                  <span className="edu-chip" style={{ color, borderColor: border, background: bg }}>
-                    ⭐ CGPA: {cgpa}
-                  </span>
-                  <span className="edu-chip" style={{ color: 'var(--text-secondary)', borderColor: 'var(--border)', background: 'var(--surface)' }}>
-                    📅 {period}
-                  </span>
+          <div className="timeline-wrapper fade-up">
+            <div className="timeline-track-horizontal"></div>
+
+            <div className="edu-grid">
+              {EDUCATION.map(({ degree, short, institution, cgpa, period, icon: Icon }, i) => (
+                <div className="edu-column" key={short} style={{ transitionDelay: `${i * 150}ms` }}>
+                  
+                  {/* Clean Minimal Top Marker */}
+                  <div className="timeline-marker-top">
+                    <Icon size={26} strokeWidth={2} color="currentColor" />
+                  </div>
+
+                  {/* Clean Card */}
+                  <div className="edu-card">
+                    <div className="edu-content">
+                      <h3 className="edu-degree">{degree} ({short})</h3>
+                      
+                      <div className="edu-details-grid">
+                        <div className="edu-badge">
+                          <MapPin size={18} /> {institution}
+                        </div>
+                        <div className="edu-badge">
+                          <Calendar size={18} /> {period}
+                        </div>
+                      </div>
+
+                      {/* Clean CGPA Box */}
+                      <div className="edu-cgpa-box">
+                        <Star size={16} fill="currentColor" /> CGPA: {cgpa}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
