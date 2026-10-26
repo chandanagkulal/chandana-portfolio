@@ -327,7 +327,7 @@ export default function Contact() {
 
         .btn-whatsapp {
           flex: 1;
-          background: #ffffff;
+          background: var(--bg-card);
           color: #10b981;
           border: 2px solid #10b981;
           border-radius: 14px;
@@ -352,10 +352,10 @@ export default function Contact() {
 
         .portfolio-footer {
           margin-top: 100px;
-          background: #ffffff; 
+          background: var(--bg-card); 
           padding: 32px 0;
           color: var(--text-secondary);
-          border-top: 1px solid rgba(0,0,0,0.06);
+          border-top: 1px solid var(--border);
         }
 
         .footer-content {
@@ -424,23 +424,23 @@ export default function Contact() {
           width: 48px;
           height: 48px;
           border-radius: 50%;
-          background: #ffffff;
-          color: #3b82f6;
+          background: var(--bg-card);
+          color: var(--accent);
           display: flex;
           align-items: center;
           justify-content: center;
-          border: 1px solid rgba(0,0,0,0.08);
+          border: 1px solid var(--border);
           cursor: pointer;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+          box-shadow: var(--card-shadow);
         }
 
         .back-to-top-btn:hover {
-          background: #3b82f6;
+          background: var(--accent);
           color: #ffffff;
-          border-color: #3b82f6;
+          border-color: var(--accent);
           transform: translateY(-4px);
-          box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+          box-shadow: 0 10px 20px var(--accent-glow);
         }
 
         @media (max-width: 992px) {
