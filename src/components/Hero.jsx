@@ -204,23 +204,47 @@ export default function Hero() {
         /* Currently Building Card */
         .building-card {
           position: absolute;
-          bottom: 10px;
-          right: -30px;
+          bottom: 15px;
+          right: -25px;
           background: rgba(255, 255, 255, 0.95);
           backdrop-filter: blur(16px);
           border: 1px solid rgba(37, 99, 235, 0.15);
           box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-          padding: 16px 20px;
+          padding: 12px 18px;
           border-radius: 12px;
-          width: 250px;
+          width: auto;
+          min-width: 180px;
           z-index: 3;
           transition: transform 0.3s ease;
         }
         .building-card:hover { transform: translateY(-4px); }
-        .building-label { font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-        .building-label::before { content: ''; display: block; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
-        .building-title { font-weight: 700; font-size: 14px; color: var(--text-primary); margin-bottom: 4px; }
-        .building-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+        .building-label { 
+          font-family: var(--font-mono); 
+          font-size: 10.5px; 
+          font-weight: 700; 
+          color: #059669; 
+          letter-spacing: 0.08em; 
+          text-transform: uppercase; 
+          margin-bottom: 4px; 
+          display: flex; 
+          align-items: center; 
+          gap: 6px; 
+        }
+        .building-label::before { 
+          content: ''; 
+          display: block; 
+          width: 6px; 
+          height: 6px; 
+          border-radius: 50%; 
+          background: #10b981; 
+          animation: greenPulse 2s infinite;
+        }
+        @keyframes greenPulse {
+          0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+          70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        .building-title { font-weight: 700; font-size: 14px; color: var(--text-primary); margin: 0; }
 
         @media (max-width: 1024px) {
           .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 60px; }
@@ -312,9 +336,8 @@ export default function Hero() {
               </div>
 
               <div className="building-card">
-                <div className="building-label">CURRENT PROJECT</div>
-                <div className="building-title">Floor Planning System</div>
-                <div className="building-desc">Interactive web-based floor planning application</div>
+                <div className="building-label">OPEN TO WORK</div>
+                <div className="building-title">Full-Stack Developer</div>
               </div>
             </div>
 

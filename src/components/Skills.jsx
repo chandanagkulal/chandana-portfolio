@@ -3,12 +3,12 @@ import { Code2, Palette, Server, Database, Sparkles } from 'lucide-react';
 
 const SKILL_CATEGORIES = [
   {
-    label: 'Frontend Engineering',
+    label: 'Frontend Development',
     color: 'linear-gradient(135deg, #3b82f6 0%, #22d3ee 50%, #5eead4 100%)', // Blue to Cyan to Teal
     icon: Palette,
     colSpan: 'col-span-2',
     rowSpan: 'row-span-1',
-    skills: ['React.js', 'React Native', 'HTML5', 'CSS3', 'Tailwind CSS', 'Redux', 'Framer Motion'],
+    skills: ['React.js', 'React Native', 'HTML5', 'CSS3', 'Tailwind CSS'],
     desc: 'Crafting pixel-perfect, highly interactive, and accessible user interfaces.'
   },
   {
@@ -285,7 +285,7 @@ export default function Skills() {
           <div className="section-header-vibrant fade-up">
             <h2 className="title-vibrant">Technical <span className="gradient-text">Arsenal</span></h2>
             <p className="subtitle-vibrant">
-              The tools, languages, and frameworks I use to engineer modern, high-performance digital solutions.
+              The tools, languages, and frameworks I use to build modern, high-performance digital solutions.
             </p>
           </div>
 
