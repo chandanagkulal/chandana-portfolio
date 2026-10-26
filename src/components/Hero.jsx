@@ -247,18 +247,51 @@ export default function Hero() {
         .building-title { font-weight: 700; font-size: 14px; color: var(--text-primary); margin: 0; }
 
         @media (max-width: 1024px) {
-          .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 60px; }
-          .hero-desc { margin: 0 auto 40px; }
+          .hero-section { padding: 105px 0 60px; }
+          .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 28px; }
+          .hero-desc { margin: 0 auto 32px; }
           .hero-cta { justify-content: center; }
           .hero-social { justify-content: center; }
           .hero-stats { justify-content: center; }
-          .hero-visuals { order: -1; margin-top: 20px; }
-          .building-card { right: 50%; transform: translateX(50%); bottom: -20px; }
-          .building-card:hover { transform: translateX(50%) translateY(-4px); }
+          .hero-visuals { order: -1; margin-top: 10px; margin-bottom: 24px; }
+          .status-badge { display: none; } /* Avoid duplicate badge on mobile since card already highlights Open to Work */
+          .building-card { 
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%); 
+            bottom: -14px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+          }
+          .building-card:hover { transform: translateX(-50%) translateY(-3px); }
         }
         @media (max-width: 600px) {
-          .profile-container { width: 260px; height: 260px; }
-          .building-card { width: 230px; padding: 12px 16px; }
+          .hero-section { padding: 90px 0 45px; }
+          .profile-container { width: 220px; height: 220px; }
+          .building-card { 
+            width: auto;
+            min-width: 170px;
+            padding: 9px 16px; 
+            bottom: -12px; 
+            border-radius: 12px;
+          }
+          .building-label { font-size: 10px; margin-bottom: 3px; justify-content: center; }
+          .building-title { font-size: 13.5px; }
+          .hero-title { font-size: 36px; margin-bottom: 12px; }
+          .role-subtitle { font-size: 12.5px; margin-bottom: 20px; }
+          .hero-desc { font-size: 15px; margin-bottom: 28px; }
+          .hero-cta { 
+            flex-direction: column; 
+            width: 100%; 
+            max-width: 300px; 
+            margin: 0 auto 32px; 
+            gap: 12px; 
+          }
+          .hero-cta .btn-primary, .hero-cta .btn-secondary { 
+            width: 100%; 
+            justify-content: center; 
+          }
+          .hero-social { margin-bottom: 36px; }
+          .hero-stats { gap: 18px; }
         }
       `}</style>
 

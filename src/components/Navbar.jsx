@@ -113,41 +113,96 @@ export default function Navbar() {
         .hamburger {
           display: none;
           flex-direction: column;
+          justify-content: center;
+          align-items: center;
           gap: 5px;
+          width: 40px;
+          height: 40px;
           padding: 8px;
           cursor: pointer;
-          background: none;
-          border: none;
+          background: rgba(0, 0, 0, 0.03);
+          border: 1px solid rgba(0, 0, 0, 0.06);
+          border-radius: 10px;
+          transition: background 0.2s;
+        }
+        .hamburger:hover {
+          background: rgba(0, 0, 0, 0.06);
         }
         .hamburger span {
           display: block;
-          width: 22px; height: 2px;
+          width: 20px; 
+          height: 2px;
           background: var(--text-primary);
-          border-radius: 1px;
-          transition: var(--transition);
+          border-radius: 2px;
+          transition: transform 0.3s ease, opacity 0.2s ease;
+        }
+        .hamburger.open span:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+        }
+        .hamburger.open span:nth-child(2) {
+          opacity: 0;
+        }
+        .hamburger.open span:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
         }
         .mobile-menu {
           display: none;
           flex-direction: column;
-          background: rgba(255, 255, 255, 0.97);
+          background: rgba(255, 255, 255, 0.98);
           border-top: 1px solid var(--border);
-          padding: 16px 24px 24px;
-          gap: 4px;
-          backdrop-filter: blur(16px);
+          border-bottom: 1px solid var(--border);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+          padding: 16px 20px 24px;
+          gap: 6px;
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          animation: navSlideDown 0.2s ease-out;
+        }
+        @keyframes navSlideDown {
+          from { opacity: 0; transform: translateY(-6px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .nav-brand-group {
+          display: flex;
+          align-items: center;
+          gap: 12px;
         }
         .mobile-menu .nav-link { width: 100%; text-align: left; padding: 12px 16px; }
-        @media (max-width: 720px) {
+        @media (max-width: 768px) {
+          .nav-inner {
+            padding: 0 16px;
+            height: 64px;
+            justify-content: flex-start;
+          }
+          .nav-logo {
+            font-size: 20px;
+          }
           .nav-links { display: none; }
-          .hamburger { display: flex; }
+          .hamburger { 
+            display: flex;
+            margin-left: 0;
+          }
           .mobile-menu { display: flex; }
         }
       `}</style>
 
-      <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
+      <nav className={`navbar${scrolled || menuOpen ? ' scrolled' : ''}`}>
         <div className="nav-inner">
-          <span className="nav-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            Chandana G Kulal
-          </span>
+          <div className="nav-brand-group">
+            <button 
+              className={`hamburger${menuOpen ? ' open' : ''}`} 
+              onClick={() => setMenuOpen(o => !o)} 
+              aria-label="Toggle menu"
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+            <span className="nav-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              Chandana G Kulal
+            </span>
+          </div>
+
           <div className="nav-links">
             {NAV_LINKS.map(({ id, label }) => (
               <button
@@ -159,11 +214,6 @@ export default function Navbar() {
               </button>
             ))}
           </div>
-          <button className="hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Toggle menu">
-            <span />
-            <span />
-            <span />
-          </button>
         </div>
         {menuOpen && (
           <div className="mobile-menu">
