@@ -14,7 +14,6 @@ export default function About() {
         #about {
           padding: 70px 0 90px;
           position: relative;
-          background: linear-gradient(180deg, rgba(248,250,252,0.4) 0%, rgba(255,255,255,1) 100%);
         }
         
         .about-grid {
@@ -40,8 +39,8 @@ export default function About() {
           letter-spacing: 0.15em;
           text-transform: uppercase;
           color: var(--text-primary);
-          background: rgba(255,255,255,0.8);
-          border: 1px solid rgba(148, 163, 184, 0.3);
+          background: var(--surface);
+          border: 1px solid var(--border);
           padding: 6px 14px;
           border-radius: 99px;
           margin-bottom: 24px;
@@ -74,7 +73,7 @@ export default function About() {
           gap: 16px;
           font-size: 17px;
           line-height: 1.8;
-          color: #475569;
+          color: var(--text-secondary);
         }
         .about-text p {
           margin: 0;
@@ -92,19 +91,19 @@ export default function About() {
           gap: 20px;
         }
         .stat-card {
-          background: #fff;
-          border: 1px solid rgba(148, 163, 184, 0.25);
+          background: var(--bg-card);
+          border: 1px solid var(--border);
           border-radius: 20px;
           padding: 24px 20px;
           display: flex;
           flex-direction: column;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 12px rgba(15,23,42,0.02);
+          box-shadow: var(--card-shadow);
         }
         .stat-card:hover {
           transform: translateY(-4px);
-          border-color: rgba(124, 58, 237, 0.3);
-          box-shadow: 0 20px 40px rgba(15,23,42,0.06);
+          border-color: rgba(124, 58, 237, 0.4);
+          box-shadow: var(--card-hover-shadow);
         }
         .stat-value {
           font-family: var(--font-heading);

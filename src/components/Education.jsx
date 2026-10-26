@@ -1,12 +1,13 @@
 import React from 'react';
-import { GraduationCap, BookOpen, MapPin, Calendar, Star } from 'lucide-react';
+import { GraduationCap, BookOpen, School, MapPin, Calendar, Star } from 'lucide-react';
 
 const EDUCATION = [
   {
     degree: 'Master of Computer Applications',
     short: 'MCA',
     institution: 'Poornaprajna Institute of Management',
-    cgpa: '8.06',
+    score: '8.06',
+    scoreType: 'CGPA',
     period: '2024 – 2026',
     icon: GraduationCap,
   },
@@ -14,9 +15,19 @@ const EDUCATION = [
     degree: 'Bachelor of Computer Applications',
     short: 'BCA',
     institution: 'Milagres College',
-    cgpa: '7.98',
+    score: '7.98',
+    scoreType: 'CGPA',
     period: '2021 – 2024',
     icon: BookOpen,
+  },
+  {
+    degree: 'Pre-University (Commerce - EBACs)',
+    short: 'PUC',
+    institution: 'Shamili Pre-University College',
+    score: '81%',
+    scoreType: 'Percentage',
+    period: '2019 – 2021',
+    icon: School,
   },
 ];
 
@@ -31,7 +42,7 @@ export default function Education() {
         }
 
         .container-education {
-          max-width: 1000px;
+          max-width: 1200px;
           margin: 0 auto;
           position: relative;
         }
@@ -45,8 +56,8 @@ export default function Education() {
         .timeline-track-horizontal {
           position: absolute;
           top: 30px; /* Centers exactly with the 60px marker */
-          left: 10%;
-          right: 10%;
+          left: 8%;
+          right: 8%;
           height: 2px;
           background: linear-gradient(to right, transparent, rgba(0,0,0,0.1) 15%, rgba(0,0,0,0.1) 85%, transparent);
           z-index: 0;
@@ -54,8 +65,8 @@ export default function Education() {
 
         .edu-grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 40px;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 32px;
           position: relative;
           z-index: 1;
         }
@@ -72,32 +83,32 @@ export default function Education() {
           width: 60px;
           height: 60px;
           border-radius: 50%; /* Circle instead of box */
-          background: #ffffff;
-          border: 1px solid rgba(0,0,0,0.08);
+          background: var(--bg-card);
+          border: 1px solid var(--border);
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 8px 16px -4px rgba(0,0,0,0.05);
+          box-shadow: var(--card-shadow);
           transition: transform 0.5s ease, box-shadow 0.4s ease;
           position: relative;
           z-index: 2;
-          color: var(--text-primary); /* Dark Icon */
+          color: var(--text-primary);
         }
 
         .edu-column:hover .timeline-marker-top {
           transform: translateY(-4px);
-          box-shadow: 0 12px 24px -6px rgba(0,0,0,0.1);
-          border-color: rgba(0,0,0,0.15);
+          box-shadow: var(--card-hover-shadow);
+          border-color: var(--border-accent);
         }
 
         /* Card Setup */
         .edu-card {
-          background: #ffffff;
+          background: var(--bg-card);
           border-radius: 24px;
           padding: 40px 32px;
-          box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+          box-shadow: var(--card-shadow);
           transition: all 0.4s ease;
-          border: 1px solid rgba(0,0,0,0.04);
+          border: 1px solid var(--border);
           position: relative;
           overflow: hidden;
           display: flex;
@@ -107,7 +118,8 @@ export default function Education() {
 
         .edu-column:hover .edu-card {
           transform: translateY(-8px);
-          box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
+          box-shadow: var(--card-hover-shadow);
+          border-color: var(--border-accent);
         }
 
         .edu-content {
@@ -120,12 +132,16 @@ export default function Education() {
 
         .edu-degree {
           font-family: var(--font-heading, serif);
-          font-size: 24px;
+          font-size: 21px;
           font-weight: 800;
           color: var(--text-primary);
-          margin: 0 0 20px 0;
-          line-height: 1.3;
+          margin: 0 0 16px 0;
+          line-height: 1.35;
           text-align: center;
+          min-height: 56px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .edu-details-grid {
@@ -157,26 +173,26 @@ export default function Education() {
           gap: 6px;
           padding: 10px 24px;
           border-radius: 99px; /* Pill shape */
-          border: 1px solid rgba(0,0,0,0.1);
-          background: rgba(0,0,0,0.02);
+          border: 1px solid var(--tag-border);
+          background: var(--tag-bg);
           font-weight: 700;
           font-size: 14px;
-          color: var(--text-primary); /* Dark text instead of white on color */
+          color: var(--text-primary);
           width: max-content;
           margin: 0 auto;
           transition: all 0.3s ease;
         }
         
         .edu-column:hover .edu-cgpa-box {
-          background: #111827; /* Very sleek dark color on hover */
+          background: var(--accent);
           color: #ffffff;
-          border-color: #111827;
+          border-color: var(--accent);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 960px) {
           .timeline-track-horizontal { display: none; }
-          .edu-grid { grid-template-columns: 1fr; gap: 40px; }
-          .edu-card { padding: 32px 24px; }
+          .edu-grid { grid-template-columns: 1fr; gap: 36px; }
+          .edu-card { padding: 32px 20px; }
         }
       `}</style>
 
@@ -185,7 +201,7 @@ export default function Education() {
           <div className="section-header-vibrant fade-up">
             <h2 className="title-vibrant">Academic <span className="gradient-text">Journey</span></h2>
             <p className="subtitle-vibrant">
-              My formal education shaping my foundation in computer science and software engineering.
+              My formal education shaping my foundation in computer science and software development.
             </p>
           </div>
 
@@ -193,7 +209,7 @@ export default function Education() {
             <div className="timeline-track-horizontal"></div>
 
             <div className="edu-grid">
-              {EDUCATION.map(({ degree, short, institution, cgpa, period, icon: Icon }, i) => (
+              {EDUCATION.map(({ degree, short, institution, score, scoreType, period, icon: Icon }, i) => (
                 <div className="edu-column" key={short} style={{ transitionDelay: `${i * 150}ms` }}>
                   
                   {/* Clean Minimal Top Marker */}
@@ -215,9 +231,9 @@ export default function Education() {
                         </div>
                       </div>
 
-                      {/* Clean CGPA Box */}
+                      {/* Clean Score Box */}
                       <div className="edu-cgpa-box">
-                        <Star size={16} fill="currentColor" /> CGPA: {cgpa}
+                        <Star size={16} fill="currentColor" /> {scoreType === 'Percentage' ? `Score: ${score}` : `CGPA: ${score}`}
                       </div>
                     </div>
                   </div>

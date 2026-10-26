@@ -46,23 +46,23 @@ export default function Achievements() {
 
         .achieve-card {
           position: relative;
-          background: #ffffff;
+          background: var(--bg-card);
           border-radius: 24px;
           padding: 40px 32px;
           text-align: center;
-          box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+          box-shadow: var(--card-shadow);
           transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
           overflow: hidden;
           z-index: 1;
           display: flex;
           flex-direction: column;
           align-items: center;
-          border: 1px solid rgba(0, 0, 0, 0.04);
+          border: 1px solid var(--border);
         }
 
         .achieve-card:hover {
           transform: translateY(-8px) scale(1.02);
-          box-shadow: 0 20px 40px -15px rgba(0,0,0,0.15);
+          box-shadow: var(--card-hover-shadow);
         }
 
         .achieve-gradient-bg {

@@ -50,9 +50,9 @@ export default function Hero() {
           gap: 8px;
           padding: 6px 14px;
           border-radius: 9999px;
-          background: rgba(255, 255, 255, 0.6);
+          background: var(--surface);
           backdrop-filter: blur(10px);
-          border: 1px solid rgba(148, 163, 184, 0.2);
+          border: 1px solid var(--border);
           box-shadow: 0 4px 12px rgba(0,0,0,0.02);
           font-family: var(--font-mono);
           font-size: 11px;
@@ -140,8 +140,8 @@ export default function Hero() {
         .social-circle {
           width: 40px; height: 40px;
           border-radius: 50%;
-          background: #fff;
-          border: 1px solid rgba(148,163,184,0.3);
+          background: var(--bg-card);
+          border: 1px solid var(--border);
           display: flex; align-items: center; justify-content: center;
           color: var(--text-secondary);
           transition: all var(--transition);
@@ -167,7 +167,7 @@ export default function Hero() {
         }
         .stat-mini-val { font-family: var(--font-mono); font-size: 22px; font-weight: 700; color: var(--text-primary); line-height: 1; }
         .stat-mini-label { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
-        .stat-divider { width: 1px; height: 28px; background: rgba(148,163,184,0.3); }
+        .stat-divider { width: 1px; height: 28px; background: var(--border); }
 
         /* ─── RIGHT COLUMN ─── */
         .hero-visuals {
@@ -183,9 +183,9 @@ export default function Hero() {
           height: 320px;
           border-radius: 50%;
           padding: 6px;
-          background: #fff;
-          border: 1px solid rgba(37,99,235,0.2);
-          box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+          background: var(--bg-card);
+          border: 1px solid var(--border-accent);
+          box-shadow: var(--card-shadow);
         }
 
         .profile-img-inner {
@@ -193,7 +193,7 @@ export default function Hero() {
           height: 100%;
           border-radius: 50%;
           overflow: hidden;
-          background: #fff;
+          background: var(--bg-card);
         }
         .profile-img-inner img {
           width: 100%;
@@ -206,10 +206,10 @@ export default function Hero() {
           position: absolute;
           bottom: 15px;
           right: -25px;
-          background: rgba(255, 255, 255, 0.95);
+          background: var(--surface);
           backdrop-filter: blur(16px);
-          border: 1px solid rgba(37, 99, 235, 0.15);
-          box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+          border: 1px solid var(--border);
+          box-shadow: var(--card-shadow);
           padding: 12px 18px;
           border-radius: 12px;
           width: auto;

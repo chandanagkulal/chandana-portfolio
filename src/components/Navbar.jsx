@@ -13,6 +13,21 @@ export default function Navbar() {
   const [active, setActive]   = useState('');
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      if (saved) return saved;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return 'light';
+  });
+
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -49,11 +64,11 @@ export default function Navbar() {
           transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
         .navbar.scrolled {
-          background: rgba(255, 255, 255, 0.85);
+          background: var(--nav-bg);
           border-bottom: 1px solid var(--border);
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
-          box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+          box-shadow: var(--card-shadow);
         }
         .nav-inner {
           display: flex;
@@ -80,6 +95,11 @@ export default function Navbar() {
           opacity: 0.8;
           transform: translateY(-1px);
         }
+        .nav-right-actions {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
         .nav-links {
           display: flex;
           align-items: center;
@@ -88,7 +108,7 @@ export default function Navbar() {
         .nav-link {
           position: relative;
           padding: 8px 16px;
-          font-size: 18px;
+          font-size: 17px;
           font-weight: 700;
           letter-spacing: 0.02em;
           text-transform: uppercase;
@@ -100,7 +120,7 @@ export default function Navbar() {
           font-family: var(--font-mono);
           transition: color var(--transition), background var(--transition);
         }
-        .nav-link:hover { color: var(--text-primary); background: rgba(0,0,0,0.03); }
+        .nav-link:hover { color: var(--text-primary); background: var(--tag-bg); }
         .nav-link.active { color: var(--accent); }
         .nav-link.active::after {
           content: '';
@@ -109,6 +129,29 @@ export default function Navbar() {
           width: 20px; height: 2px;
           background: var(--accent);
           border-radius: 1px;
+        }
+        .theme-toggle {
+          width: 38px;
+          height: 38px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--text-primary);
+          background: var(--tag-bg);
+          border: 1px solid var(--border);
+          cursor: pointer;
+          transition: all 0.25s ease;
+          flex-shrink: 0;
+        }
+        .theme-toggle:hover {
+          background: var(--surface-hover);
+          transform: translateY(-2px);
+          color: var(--accent);
+          border-color: var(--border-accent);
+        }
+        .theme-toggle:active {
+          transform: scale(0.92);
         }
         .hamburger {
           display: none;
@@ -120,13 +163,13 @@ export default function Navbar() {
           height: 40px;
           padding: 8px;
           cursor: pointer;
-          background: rgba(0, 0, 0, 0.03);
-          border: 1px solid rgba(0, 0, 0, 0.06);
+          background: var(--tag-bg);
+          border: 1px solid var(--border);
           border-radius: 10px;
           transition: background 0.2s;
         }
         .hamburger:hover {
-          background: rgba(0, 0, 0, 0.06);
+          background: var(--surface-hover);
         }
         .hamburger span {
           display: block;
@@ -148,10 +191,10 @@ export default function Navbar() {
         .mobile-menu {
           display: none;
           flex-direction: column;
-          background: rgba(255, 255, 255, 0.98);
+          background: var(--surface);
           border-top: 1px solid var(--border);
           border-bottom: 1px solid var(--border);
-          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+          box-shadow: var(--card-shadow);
           padding: 16px 20px 24px;
           gap: 6px;
           backdrop-filter: blur(20px);
@@ -172,10 +215,10 @@ export default function Navbar() {
           .nav-inner {
             padding: 0 16px;
             height: 64px;
-            justify-content: flex-start;
+            justify-content: space-between;
           }
           .nav-logo {
-            font-size: 20px;
+            font-size: 19px;
           }
           .nav-links { display: none; }
           .hamburger { 
@@ -203,16 +246,43 @@ export default function Navbar() {
             </span>
           </div>
 
-          <div className="nav-links">
-            {NAV_LINKS.map(({ id, label }) => (
-              <button
-                key={id}
-                className={`nav-link${active === id ? ' active' : ''}`}
-                onClick={() => handleNav(id)}
-              >
-                {label}
-              </button>
-            ))}
+          <div className="nav-right-actions">
+            <div className="nav-links">
+              {NAV_LINKS.map(({ id, label }) => (
+                <button
+                  key={id}
+                  className={`nav-link${active === id ? ' active' : ''}`}
+                  onClick={() => handleNav(id)}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            <button 
+              className="theme-toggle" 
+              onClick={toggleTheme} 
+              aria-label="Toggle color theme"
+              title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} mode`}
+            >
+              {theme === 'dark' ? (
+                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="5" />
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+              ) : (
+                <svg width="19" height="19" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+            </button>
           </div>
         </div>
         {menuOpen && (

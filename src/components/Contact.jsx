@@ -134,8 +134,8 @@ export default function Contact() {
 
         .contact-item:hover {
           transform: translateX(8px);
-          background: #ffffff;
-          box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+          background: var(--surface-hover);
+          box-shadow: var(--card-shadow);
         }
 
         .contact-icon-box {
@@ -179,7 +179,7 @@ export default function Contact() {
 
         .contact-divider {
           height: 1px;
-          background: linear-gradient(to right, rgba(0,0,0,0.1), transparent);
+          background: var(--border);
           margin: 16px 0;
         }
 
@@ -204,8 +204,8 @@ export default function Contact() {
           width: 48px;
           height: 48px;
           border-radius: 14px;
-          background: #ffffff;
-          border: 1px solid rgba(0,0,0,0.06);
+          background: var(--bg-card);
+          border: 1px solid var(--border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -233,14 +233,11 @@ export default function Contact() {
 
         /* Premium Form UI */
         .contact-form-card {
-          background: #ffffff;
+          background: var(--bg-card);
           border-radius: 28px;
           padding: 48px;
-          border: 1px solid rgba(255,255,255,0.8);
-          box-shadow: 
-            0 25px 50px -12px rgba(59, 130, 246, 0.15),
-            0 0 40px rgba(59, 130, 246, 0.05),
-            inset 0 1px 0 rgba(255,255,255,1);
+          border: 1px solid var(--border);
+          box-shadow: var(--card-shadow);
           position: relative;
         }
 
@@ -271,8 +268,8 @@ export default function Contact() {
           width: 100%;
           padding: 18px 24px;
           border-radius: 16px;
-          border: 1px solid rgba(0,0,0,0.06);
-          background: #f8fafc;
+          border: 1px solid var(--border);
+          background: var(--surface);
           font-family: inherit;
           font-size: 15px;
           font-weight: 500;
@@ -282,15 +279,15 @@ export default function Contact() {
         }
 
         .form-input::placeholder, .form-textarea::placeholder {
-          color: #94a3b8;
+          color: var(--text-muted);
           font-weight: 400;
         }
 
         .form-input:focus, .form-textarea:focus {
           outline: none;
-          border-color: #3b82f6;
-          background: #ffffff;
-          box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), inset 0 0 0 1px #3b82f6;
+          border-color: var(--accent);
+          background: var(--bg-card);
+          box-shadow: 0 0 0 4px var(--accent-glow), inset 0 0 0 1px var(--accent);
           transform: translateY(-2px);
         }
 

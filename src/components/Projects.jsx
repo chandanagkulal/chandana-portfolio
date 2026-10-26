@@ -264,8 +264,9 @@ const Projects = () => {
           position: relative;
           height: 100%;
           border-radius: 24px;
-          background: #ffffff;
-          box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+          background: var(--bg-card);
+          border: 1px solid var(--border);
+          box-shadow: var(--card-shadow);
           transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
           display: flex;
           flex-direction: column;
@@ -332,12 +333,11 @@ const Projects = () => {
           letter-spacing: 0.15em;
           color: var(--text-secondary);
           text-transform: uppercase;
-          background: rgba(0,0,0,0.04);
+          background: var(--tag-bg);
+          border: 1px solid var(--tag-border);
           padding: 6px 12px;
           border-radius: 99px;
         }
-        
-
 
         .project-title {
           font-family: var(--font-heading, serif);
@@ -366,22 +366,18 @@ const Projects = () => {
           font-size: 12px;
           font-weight: 500;
           color: var(--text-secondary);
-          background: rgba(0,0,0,0.03);
-          border: 1px solid rgba(0,0,0,0.05);
+          background: var(--tag-bg);
+          border: 1px solid var(--tag-border);
           padding: 6px 12px;
           border-radius: 8px;
           transition: all 0.3s ease;
         }
 
-
-
         .vibrant-card:hover .tech-tag {
-          background: rgba(0,0,0,0.06);
-          border-color: rgba(0,0,0,0.1);
+          background: var(--surface-hover);
+          border-color: var(--border);
           color: var(--text-primary);
         }
-
-
 
         .card-footer {
           display: flex;
@@ -403,25 +399,25 @@ const Projects = () => {
         }
 
         .btn-live {
-          background: var(--text-primary);
-          color: var(--bg);
+          background: var(--accent);
+          color: #ffffff;
         }
 
         .btn-live:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 16px -4px rgba(0,0,0,0.2);
+          box-shadow: 0 8px 16px -4px rgba(37, 99, 235, 0.4);
         }
 
         .btn-github {
-          background: transparent;
+          background: var(--tag-bg);
           color: var(--text-primary);
-          border: 1px solid rgba(0,0,0,0.1);
+          border: 1px solid var(--border);
         }
 
-
-
         .btn-github:hover {
-          background: rgba(0,0,0,0.04);
+          background: var(--surface-hover);
+          border-color: var(--border-accent);
+          transform: translateY(-2px);
         }
 
 

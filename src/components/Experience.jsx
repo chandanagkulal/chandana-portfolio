@@ -63,7 +63,7 @@ export default function Experience() {
           top: 8px;
           bottom: 0;
           width: 2px;
-          background: rgba(148, 163, 184, 0.2);
+          background: var(--border);
         }
 
         .timeline-item {
@@ -78,7 +78,7 @@ export default function Experience() {
           width: 14px;
           height: 14px;
           border-radius: 50%;
-          background: #fff;
+          background: var(--bg-card);
           border: 2px solid var(--accent);
           z-index: 2;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -87,11 +87,11 @@ export default function Experience() {
         /* Professional Card Layout */
         .exp-card {
           position: relative;
-          background: #fff;
-          border: 1px solid rgba(148, 163, 184, 0.2);
+          background: var(--bg-card);
+          border: 1px solid var(--border);
           border-radius: 12px;
           padding: 32px;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+          box-shadow: var(--card-shadow);
           transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
           text-align: left;
           width: 100%;
@@ -99,8 +99,8 @@ export default function Experience() {
 
         .exp-card:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 30px rgba(0,0,0,0.05);
-          border-color: rgba(37, 99, 235, 0.2);
+          box-shadow: var(--card-hover-shadow);
+          border-color: var(--border-accent);
         }
         
         .exp-header {
@@ -180,15 +180,15 @@ export default function Experience() {
           font-size: 12px;
           padding: 4px 10px;
           border-radius: 6px;
-          background: #f8fafc;
-          border: 1px solid #e2e8f0;
+          background: var(--tag-bg);
+          border: 1px solid var(--tag-border);
           color: var(--text-secondary);
         }
         
         .exp-key-project {
           margin-top: 24px;
           padding-top: 16px;
-          border-top: 1px solid rgba(148,163,184,0.2);
+          border-top: 1px solid var(--border);
           font-size: 13px;
           color: var(--text-secondary);
         }

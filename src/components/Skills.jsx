@@ -153,13 +153,13 @@ export default function Skills() {
           position: relative;
           height: 100%;
           border-radius: 32px;
-          background: #ffffff;
-          box-shadow: 0 15px 35px -10px rgba(0,0,0,0.05), 0 5px 15px -5px rgba(0,0,0,0.02);
+          background: var(--bg-card);
+          box-shadow: var(--card-shadow);
           transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
           display: flex;
           flex-direction: column;
           overflow: hidden;
-          border: 1px solid rgba(0, 0, 0, 0.04);
+          border: 1px solid var(--border);
         }
 
 
@@ -259,20 +259,18 @@ export default function Skills() {
           font-size: 13px;
           font-weight: 600;
           color: var(--text-primary);
-          background: rgba(0, 0, 0, 0.04);
-          border: 1px solid rgba(0, 0, 0, 0.05);
+          background: var(--tag-bg);
+          border: 1px solid var(--tag-border);
           padding: 8px 18px;
           border-radius: 12px;
           transition: all 0.3s ease;
           backdrop-filter: blur(10px);
         }
 
-
-
         .bento-card:hover .bento-pill {
-          background: #ffffff;
+          background: var(--surface-hover);
           box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-          border-color: transparent;
+          border-color: var(--border);
           transform: translateY(-2px);
         }
         
